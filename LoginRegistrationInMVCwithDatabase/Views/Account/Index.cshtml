@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<h2 style="padding:4px 10px;">Welcome</h2>
+<div class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="top-header">
+            <ul class="pull-right m-none">
+                <li>
+
+                    @if (Request.IsAuthenticated)
+                    {
+
+                        @Html.ActionLink("Log Out", "Logout", "Account")
+                    }
+                    else
+                    {
+
+                        @Html.ActionLink("Login", "Login", "Account")
+                    }
+                </li>
+                <li>
+                    @if (!Request.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Register", "Register", "Account")
+                    }
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container body-content">
+
+    @if (Request.IsAuthenticated)
+    {
+
+        <span>Welcome @Html.Encode(User.Identity.Name) </span>
+    }
+   
+
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
