@@ -2,6 +2,10 @@
 using LoginRegistrationInMVCwithDatabase.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,9 +16,66 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
     public class AccountController : Controller
     {
         // GET: Account
+        
+        LoginRegistrationInMVCEntities1 db = new LoginRegistrationInMVCEntities1();
         public ActionResult Index()
         {
-            return View();
+
+            var products = TempData["products"] as List<Product_>;
+            if (products != null) {
+                var tupleModel1 = new Tuple<List<Product_>, List<Category>>(products, categorySelectList());
+
+                //sending it to view
+                return View(tupleModel1);
+            }
+            else
+            {
+                var tupleModel = new Tuple<List<Product_>, List<Category>>(GetData(), categorySelectList());
+
+                //sending it to view
+                return View(tupleModel);
+            }
+            
+         
+        }
+        [HttpPost]
+        
+
+        public ActionResult CategoryBaseResult(int category)
+        {
+
+            string query = "select * from Product_ where Ctegory_ID = '" + category + "'";
+
+            List<Product_> products = new List<Product_>();
+            string constr = System.Configuration.ConfigurationManager.ConnectionStrings["LRI"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+
+                            products.Add(new Product_
+                            {
+                                ID = Convert.ToInt32(sdr["ID"]),
+                                Price = Convert.ToInt32(sdr["Price"]),
+                                Name = sdr["Name"].ToString(),
+                                Image = sdr["Image"].ToString(),
+                                Ctegory_ID = Convert.ToInt32(sdr["Ctegory_ID"])
+                            });
+
+                        }
+                    }
+                    con.Close();
+                }
+                TempData["products"] = products;
+                return RedirectToAction("Index", "Account");
+            }
         }
 
         //Return Register view
@@ -33,7 +94,7 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
             if (ModelState.IsValid)
             {
                 //create database context using Entity framework 
-                using (var databaseContext = new LoginRegistrationInMVCEntities())
+                using (var databaseContext = new LoginRegistrationInMVCEntities1())
                 {
                     //If the model state is valid i.e. the form values passed the validation then we are storing the User's details in DB.
                     RegisterUser reglog = new RegisterUser();
@@ -102,7 +163,7 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
         //function to check if User is valid or not
         public RegisterUser IsValidUser(LoginViewModel model)
         {
-            using (var dataContext = new LoginRegistrationInMVCEntities())
+            using (var dataContext = new LoginRegistrationInMVCEntities1())
             {
                 //Retireving the user details from DB based on username and password enetered by user.
                 RegisterUser user = dataContext.RegisterUsers.Where(query => query.Email.Equals(model.Email) && query.Password.Equals(model.Password)).SingleOrDefault();
@@ -114,8 +175,75 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
                     return user;
             }
         }
+        // retriving data from database
+        private List<Product_> GetData()
+        {
 
+            string query = "SELECT * FROM Product_";
+            List<Product_> products = new List<Product_>();
+            string constr = System.Configuration.ConfigurationManager.ConnectionStrings["LRI"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            
+                            products.Add(new Product_
+                            {
+                                ID = Convert.ToInt32(sdr["ID"]),
+                                Price = Convert.ToInt32(sdr["Price"]),
+                                Name = sdr["Name"].ToString(),
+                                Image = sdr["Image"].ToString()
+                        });
+                           
+                        }
+                    }
+                    con.Close();
+                }
 
+                return products;
+            }
+        }
+       
+        public List<Category> categorySelectList()
+        {
+            string query = "SELECT * FROM Category";
+            List<Category> category = new List<Category>();
+            string constr = System.Configuration.ConfigurationManager.ConnectionStrings["LRI"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+
+                            category.Add(new Category
+                            {
+                                Category_ID = Convert.ToInt32(sdr["Category_ID"]),
+                                Category_Name = sdr["Category_Name"].ToString()
+
+                            });
+
+                        }
+                    }
+                    con.Close();
+                }
+
+                return category;
+
+            }
+        }
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
