@@ -17,6 +17,8 @@ namespace LoginRegistrationInMVCwithDatabase.Models
         public int Order_id { get; set; }
         public Nullable<System.DateTime> OrderDate { get; set; }
         public int Customer_ID { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Price { get; set; }
     
         public virtual RegisterUser RegisterUser { get; set; }
     }

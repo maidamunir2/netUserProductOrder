@@ -171,7 +171,7 @@ body {
             color: var(--c-w-theme);
         }*/
 
-    .top-header .pull-right li:last-child {
+    .top-header .pull-right li {
         border-right: .1rem solid rgba(255,255,255, .2);
     }
 

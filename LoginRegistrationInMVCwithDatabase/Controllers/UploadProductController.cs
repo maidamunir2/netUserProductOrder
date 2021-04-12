@@ -12,7 +12,7 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
     public class UploadProductController : Controller
     {
         // GET: UploadProduct
-        LoginRegistrationInMVCEntities1 entities = new LoginRegistrationInMVCEntities1();
+        LoginRegistrationInMVCEntities entities = new LoginRegistrationInMVCEntities();
         public ActionResult Index()
         {
             List<Category> category = categorySelectList();
@@ -33,6 +33,7 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
             postedFile.SaveAs(Server.MapPath(filePath));
 
             //Insert the Image File details in Table.
+            
 
             entities.Product_.Add(new Product_
             {

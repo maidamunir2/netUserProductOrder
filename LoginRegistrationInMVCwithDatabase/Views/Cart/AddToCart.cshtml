@@ -16,9 +16,11 @@
     .embed-responsive .card-img-top {
         object-fit: cover;
     }
+
     .container {
         margin-top: 50px;
     }
+
 </style>
 <div class="navbar navbar-inverse navbar-fixed-top">
 
@@ -29,7 +31,7 @@
 
                 @if (Request.IsAuthenticated)
                 {
-
+                    @Html.ActionLink("Orders", "ProceedToOrder", "Cart")
                     @Html.ActionLink("Cart", "AddToCart", "Cart")
                     @Html.ActionLink("Home", "Index", "Account")
                     @Html.ActionLink("Log Out", "Logout", "Account")
@@ -122,13 +124,13 @@
                             </div>
                         </div>
                         <br />
-                        
+
                     }
 
                 }
 
             </div>
-         
+
         </div>
 
         <br />
@@ -139,8 +141,22 @@
                     <a class="btn btn-success" href="/">
                         Add More Products
                     </a>
-                   
+
                 </div>
+         
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div style="float:right">
+                    @using (Html.BeginForm("ordersList", "Cart"))
+
+                    {
+                    <button type="submit" class="btn btn-success"><i class="fa fa-first-order"></i>Proceed To Order</button>
+                    }
+                </div>
+
             </div>
         </div>
         <!--Cart End-->
