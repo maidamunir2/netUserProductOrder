@@ -12,7 +12,7 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
 {
     public class CartController : Controller
     {
-        LoginRegistrationInMVCEntities entities = new LoginRegistrationInMVCEntities();
+        LoginRegistrationInMVCEntities1 entities = new LoginRegistrationInMVCEntities1();
         // GET: Cart
         public ActionResult AddToCart()
         {
@@ -45,7 +45,7 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
                                 Customer_ID = Convert.ToInt32(sdr["Customer_ID"]),
                                 Name = sdr["Name"].ToString(),
                                 Price = Convert.ToInt32(sdr["Price"])
-
+                                
                             });
 
                         }
@@ -73,7 +73,8 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
                         OrderDate = DateTime.Now,
                         Customer_ID = customerId,
                         Name = item.Product.Name,
-                        Price = item.Product.Price
+                        Price = item.Product.Price,
+                        Category_ID = item.Product.Ctegory_ID
 
                     });
 
@@ -81,6 +82,7 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
                 }
                 
             }
+            Session["cart"] = null;
             return RedirectToAction("ProceedToOrder");
            
         }

@@ -143,7 +143,7 @@
                     </a>
 
                 </div>
-         
+
 
             </div>
         </div>
@@ -153,13 +153,26 @@
                     @using (Html.BeginForm("ordersList", "Cart"))
 
                     {
-                    <button type="submit" class="btn btn-success"><i class="fa fa-first-order"></i>Proceed To Order</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-first-order"></i>Proceed To Order</button>
                     }
                 </div>
 
             </div>
         </div>
         <!--Cart End-->
+        <!--Suggestion Start-->
+
+        <div>
+            <h4>Suggestion For You</h4>
+
+            @{
+                Html.RenderAction("Index", "Suggestion");
+            }
+
+
+        </div>
+
+        <!--Suggestion End-->
 
     }
 

@@ -17,6 +17,7 @@ namespace LoginRegistrationInMVCwithDatabase.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
+            this.Orders = new HashSet<Order>();
             this.Product_ = new HashSet<Product_>();
             this.Sub_Category = new HashSet<Sub_Category>();
         }
@@ -24,6 +25,8 @@ namespace LoginRegistrationInMVCwithDatabase.Models
         public int Category_ID { get; set; }
         public string Category_Name { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product_> Product_ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

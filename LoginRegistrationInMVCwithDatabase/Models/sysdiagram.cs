@@ -12,16 +12,12 @@ namespace LoginRegistrationInMVCwithDatabase.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class sysdiagram
     {
-        public int Order_id { get; set; }
-        public Nullable<System.DateTime> OrderDate { get; set; }
-        public int Customer_ID { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> Price { get; set; }
-        public Nullable<int> Category_ID { get; set; }
-    
-        public virtual Category Category { get; set; }
-        public virtual RegisterUser RegisterUser { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

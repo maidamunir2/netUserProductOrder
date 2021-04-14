@@ -63,57 +63,71 @@
         <!--Products Start-->
 
 
-    <div class="container">
+        <div class="container">
 
-        <label>Select Category</label>
-        @using (Html.BeginForm("CategoryBaseResult", "Account", FormMethod.Post))
-        {
-            <select name="category" style="width:200px">
-                <option selected value="0">---Select---</option>
-                @foreach (Category item in Model.Item2)
-                {
-
-                    <option value="@item.Category_ID">@item.Category_Name</option>
-                }
-            </select>
-
-            <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
-
-        }
-        <div class="row">
-            @foreach (Product_ item in Model.Item1)
+            <label>Select Category</label>
+            @using (Html.BeginForm("CategoryBaseResult", "Account", FormMethod.Post))
             {
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-body">
+                <select name="category" style="width:200px">
+                    <option selected value="0">---Select---</option>
+                    @foreach (Category item in Model.Item2)
+                    {
 
-                            <img alt="@item.Name" class="card-img-top embed-responsive-item"
-                                 src="@Url.Content(item.Image)" />
-                        </div>
-                        <div class="card-footer">
-                            <p class="card-text"> @item.Name</p>
-                            <h5 class="card-title text-center"> @item.Price</h5>
-                            <div class="text-center">
+                        <option value="@item.Category_ID">@item.Category_Name</option>
+                    }
+                </select>
 
-                                @using (Html.BeginForm("AddToCart", "Cart", new { productid = item.ID }, FormMethod.Post))
-                                {
+                <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
 
-                                    <button type="submit" class="btn btn-success"><i class="fa fa-shopping-cart"></i>Add To Cart</button>
+            }
+            <div class="row">
+                @foreach (Product_ item in Model.Item1)
+                {
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <div class="card-body">
 
-                                }
+                                <img alt="@item.Name" class="card-img-top embed-responsive-item"
+                                     src="@Url.Content(item.Image)" />
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text"> @item.Name</p>
+                                <h5 class="card-title text-center"> @item.Price</h5>
+                                <div class="text-center">
+
+                                    @using (Html.BeginForm("AddToCart", "Cart", new { productid = item.ID }, FormMethod.Post))
+                                    {
+
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-shopping-cart"></i>Add To Cart</button>
+
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
 
+
+            </div>
 
         </div>
 
-    </div>
-
         <!--Products End-->
 
+
+        <!--Suggestion Start-->
+
+<div>
+  
+
+    @{
+        Html.RenderAction("Index", "Suggestion");
+    }
+
+ 
+</div>
+
+        <!--Suggestion End-->
     }
 
     <hr />

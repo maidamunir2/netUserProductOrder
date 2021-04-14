@@ -4,12 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="295bdb730e5545d6a63311cdb94ada48" Name="Diagram1">
-        <EntityTypeShape EntityType="LoginRegistrationInMVCModel.Category" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LoginRegistrationInMVCModel.Order" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LoginRegistrationInMVCModel.Product_" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="LoginRegistrationInMVCModel.RegisterUser" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LoginRegistrationInMVCModel.Sub_Category" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+      <Diagram DiagramId="2112bbb8c4724099b3ddaf3597449e83" Name="Diagram1">
+        <EntityTypeShape EntityType="LoginRegistrationInMVCModel.Category" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LoginRegistrationInMVCModel.Order" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="LoginRegistrationInMVCModel.Product_" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LoginRegistrationInMVCModel.RegisterUser" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LoginRegistrationInMVCModel.Sub_Category" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LoginRegistrationInMVCModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="LoginRegistrationInMVCModel.FK_Order_Category" ManuallyRouted="false" />
         <AssociationConnector Association="LoginRegistrationInMVCModel.FK_Product__Category" ManuallyRouted="false" />
         <AssociationConnector Association="LoginRegistrationInMVCModel.FK_Sub_Category_Category" ManuallyRouted="false" />
         <AssociationConnector Association="LoginRegistrationInMVCModel.FK_Order_Customer" ManuallyRouted="false" />

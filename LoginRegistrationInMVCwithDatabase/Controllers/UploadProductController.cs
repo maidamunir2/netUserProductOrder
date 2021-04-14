@@ -12,7 +12,7 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
     public class UploadProductController : Controller
     {
         // GET: UploadProduct
-        LoginRegistrationInMVCEntities entities = new LoginRegistrationInMVCEntities();
+        LoginRegistrationInMVCEntities1 entities = new LoginRegistrationInMVCEntities1();
         public ActionResult Index()
         {
             List<Category> category = categorySelectList();

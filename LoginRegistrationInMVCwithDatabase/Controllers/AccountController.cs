@@ -17,7 +17,7 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
     {
         // GET: Account
         
-        LoginRegistrationInMVCEntities db = new LoginRegistrationInMVCEntities();
+        LoginRegistrationInMVCEntities1 db = new LoginRegistrationInMVCEntities1();
         public ActionResult Index()
         {
 
@@ -94,7 +94,7 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
             if (ModelState.IsValid)
             {
                 //create database context using Entity framework 
-                using (var databaseContext = new LoginRegistrationInMVCEntities())
+                using (var databaseContext = new LoginRegistrationInMVCEntities1())
                 {
                     //If the model state is valid i.e. the form values passed the validation then we are storing the User's details in DB.
                     RegisterUser reglog = new RegisterUser();
@@ -163,7 +163,7 @@ namespace LoginRegistrationInMVCwithDatabase.Controllers
         //function to check if User is valid or not
         public RegisterUser IsValidUser(LoginViewModel model)
         {
-            using (var dataContext = new LoginRegistrationInMVCEntities())
+            using (var dataContext = new LoginRegistrationInMVCEntities1())
             {
                 //Retireving the user details from DB based on username and password enetered by user.
                 RegisterUser user = dataContext.RegisterUsers.Where(query => query.Email.Equals(model.Email) && query.Password.Equals(model.Password)).SingleOrDefault();

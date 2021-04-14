@@ -13,10 +13,10 @@ namespace LoginRegistrationInMVCwithDatabase.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LoginRegistrationInMVCEntities : DbContext
+    public partial class LoginRegistrationInMVCEntities1 : DbContext
     {
-        public LoginRegistrationInMVCEntities()
-            : base("name=LoginRegistrationInMVCEntities")
+        public LoginRegistrationInMVCEntities1()
+            : base("name=LoginRegistrationInMVCEntities1")
         {
         }
     
@@ -30,5 +30,6 @@ namespace LoginRegistrationInMVCwithDatabase.Models
         public virtual DbSet<Product_> Product_ { get; set; }
         public virtual DbSet<RegisterUser> RegisterUsers { get; set; }
         public virtual DbSet<Sub_Category> Sub_Category { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
